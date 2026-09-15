@@ -7,6 +7,14 @@ through a tool-authority chain, verifies every step with independent evidence,
 and reports success **only when the evidence proves it**. It runs on your
 machine, streams every step live to a browser UI, and never fakes progress.
 
+<div align="center">
+ 
+## 🎥 AutoFlow AI Demo
+
+[![SwyftPay Demo Video](./desktop/Docs/AutoFlow_Al.jpeg)](https://youtu.be/LUDuyaQkR-A)
+
+▶️ **[Watch Demo Video on Youtube](https://youtu.be/LUDuyaQkR-A)**
+
 > **Honesty first.** Retrieval is not authorization. Model confidence is not
 > verification. Tool success is not task success. A failed verification means
 > NOT VERIFIED — never success. Every capability below is labeled LIVE /
