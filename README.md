@@ -22,12 +22,13 @@ machine, streams every step live to a browser UI, and never fakes progress.
 4. [How a task flows end to end (no hallucination)](#how-a-task-flows-end-to-end)
 5. [The frontend — running automation from the browser](#the-frontend)
 6. [Quick start](#quick-start)
-7. [The local API](#the-local-api)
-8. [CLI reference](#cli-reference)
-9. [Configuration](#configuration)
-10. [Testing & verification](#testing--verification)
-11. [Security](#security)
-12. [Capability matrix](#capability-matrix)
+7. [Run it locally (full stack)](#run-it-locally-full-stack)
+8. [The local API](#the-local-api)
+9. [CLI reference](#cli-reference)
+10. [Configuration](#configuration)
+11. [Testing & verification](#testing--verification)
+12. [Security](#security)
+13. [Capability matrix](#capability-matrix)
 
 ---
 
@@ -225,6 +226,89 @@ uv run python -m autoflow_ai.cli serve   # http://127.0.0.1:8770
 
 One-command scripts also exist: `.\scripts\bootstrap.ps1`, `run.ps1`,
 `test.ps1`, `simulate.ps1`, `run-flagship.ps1`, `check-models.ps1`.
+
+---
+
+## Run it locally (full stack)
+
+AutoFlow AI has three components. For the complete desktop experience with live
+data, start them **in this order**: **1) backend → 2) ai-ml → 3) desktop**. Each
+runs in its own terminal. Everything runs on localhost with zero external infra
+by default (SQLite + in-process queue + local models).
+
+### Prerequisites
+
+- **Python 3.12+** (developed/tested on 3.14) with [`uv`](https://docs.astral.sh/uv/) installed
+- **Node.js 18+** and [`pnpm`](https://pnpm.io/) (for the desktop app)
+- Windows / PowerShell examples below (macOS/Linux: swap `copy` for `cp` and
+  `.venv\Scripts\activate` for `source .venv/bin/activate`)
+
+### 1) Backend — control plane (port 8000)
+
+The durable, API-first control plane (auth, tasks, state machine, approvals,
+events, audit). Runs entirely on mocks by default, so it boots with no infra.
+
+```powershell
+cd backend
+python -m venv .venv
+.venv\Scripts\activate                 # macOS/Linux: source .venv/bin/activate
+pip install -e ".[dev]"
+copy .env.example .env                 # macOS/Linux: cp .env.example .env
+
+# start the API (inline worker runs by default)
+python -m uvicorn app.main:app --reload --port 8000
+
+# in another terminal (optional): seed demo data so the UI has content
+python -m scripts.seed
+```
+
+Verify it's up:
+- Swagger UI: <http://127.0.0.1:8000/docs>
+- Health: <http://127.0.0.1:8000/health>
+
+### 2) AI/ML — mission runtime (port 8770)
+
+The agentic runtime (planner, specialist agents, tools, verifier) plus its own
+browser UI and SSE stream.
+
+```powershell
+cd ai-ml
+uv sync                                # install deps
+uv pip install cactus-needle           # optional: on-device Needle agent
+copy ..\.env.example ..\.env           # macOS/Linux: cp ../.env.example ../.env
+                                       # edit ..\.env to enable live cloud models
+uv run python -m autoflow_ai.cli doctor   # environment diagnostics
+uv run python -m autoflow_ai.cli serve    # http://127.0.0.1:8770
+```
+
+Verify it's up: open <http://127.0.0.1:8770> — you get the mission UI directly.
+
+> To wire the backend to this runtime instead of mocks, set
+> `INTELLIGENCE_MODE=integration` and `AI_ML_URL=http://127.0.0.1:8770` in the
+> root `.env` before starting the backend.
+
+### 3) Desktop — Electron command center (port 3000)
+
+The Electron + Next.js desktop client. It runs on local mock data by default;
+point it at the running backend to render **live** data + SSE.
+
+```powershell
+cd desktop
+pnpm install
+
+# connect the desktop to the live backend (optional but recommended):
+# create desktop/.env.local with:
+#   NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+#   NEXT_PUBLIC_API_TOKEN=dev
+
+pnpm dev                               # starts Next (:3000) + launches Electron
+```
+
+`pnpm dev` runs the Next.js dev server on port 3000 and, once it's ready,
+builds and launches the Electron desktop window automatically. Leave the backend
+(and ai-ml, if using integration mode) running in their terminals.
+
+**Summary of ports:** backend `:8000` · ai-ml `:8770` · desktop Next `:3000`.
 
 ---
 
