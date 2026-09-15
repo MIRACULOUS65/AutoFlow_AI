@@ -11,7 +11,7 @@ machine, streams every step live to a browser UI, and never fakes progress.
  
 ## 🎥 AutoFlow AI Demo
 
-[![SwyftPay Demo Video](./desktop/Docs/AutoFlow_Al.jpeg)](https://youtu.be/LUDuyaQkR-A)
+[![AutoFlow AI Demo Video](./desktop/Docs/AutoFlow_Al.jpeg)](https://youtu.be/LUDuyaQkR-A)
 
 ▶️ **[Watch Demo Video on Youtube](https://youtu.be/LUDuyaQkR-A)**
 
