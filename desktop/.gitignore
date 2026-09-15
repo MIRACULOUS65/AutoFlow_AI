@@ -1,0 +1,35 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next
+out
+
+# electron build outputs
+dist-electron
+release
+release_stale_*
+dist-win
+.eb-cache
+
+# misc
+.DS_Store
+*.pem
+.vscode/*
+!.vscode/extensions.json
+
+# env
+.env
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

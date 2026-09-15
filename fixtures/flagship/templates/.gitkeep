@@ -1,0 +1,3 @@
+# Reserved for report templates (e.g. a styled .xlsx template).
+# The current flagship generates the workbook from scratch via openpyxl; a
+# template can be dropped here later and referenced from flagship_contract.json.

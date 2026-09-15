@@ -1,0 +1,14 @@
+{
+  "request": {
+    "workspace_id": "ws_operations",
+    "goal": "Create my weekly operations report",
+    "constraints": [],
+    "attachments": [],
+    "client_metadata": { "source": "contract-fixture", "intent": "cancel-mid-run" }
+  },
+  "_expectation": {
+    "cancel_via": "POST /api/v1/tasks/{task_id}/cancel",
+    "terminal_status": "CANCELLED",
+    "notes": "Worker observes cancel_requested before the next side effect; completed work is preserved."
+  }
+}

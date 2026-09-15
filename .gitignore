@@ -1,0 +1,79 @@
+# ---- Secrets / environment ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+
+# ---- Node / Electron (desktop) ----
+node_modules/
+.npm/
+.pnpm-store/
+dist-electron/
+out/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# ---- Data stores / artifacts (local dev) ----
+chroma/
+.chroma/
+data/chroma/
+data/rag/
+data/index/
+data/memory.sqlite
+data/memory/
+generated/
+*.sqlite
+*.sqlite3
+*.db
+_demo.db
+artifacts/
+object-store/
+tmp/
+.tmp/
+
+# ---- Flagship runtime artifacts (transient generated files; keep the dir) ----
+fixtures/flagship/runtime/*
+!fixtures/flagship/runtime/.gitkeep
+
+# ---- AutoFlow runtime / model cache (never commit weights or runtime data) ----
+.autoflow/
+**/.autoflow/
+models/*.gguf
+models/*.bin
+models/*.safetensors
+*.gguf
+*.safetensors
+model-runs/
+screenshots/
+*.png.secret
+missions/
+# ---- IDE / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,13 @@
+{
+  "request": {
+    "workspace_id": "ws_operations",
+    "goal": "",
+    "constraints": [],
+    "attachments": [],
+    "client_metadata": { "source": "contract-fixture" }
+  },
+  "_expectation": {
+    "api_error_code": "VALIDATION_ERROR",
+    "notes": "An empty goal is rejected at the request boundary; no task, plan, or side effect is created."
+  }
+}

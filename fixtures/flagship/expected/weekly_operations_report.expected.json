@@ -1,0 +1,32 @@
+{
+  "description": "Deterministic expected values for the flagship weekly operations report, computed from fixtures/flagship/data/*.csv. The independent verifier reconciles the generated workbook against these numbers. If the data CSVs change, regenerate these expectations.",
+  "period_label": "This Week",
+  "regions": ["North", "South", "East", "West", "Central"],
+  "sheets_required": ["Summary", "By Region"],
+  "summary_columns_required": ["Metric", "Value"],
+  "by_region_columns_required": [
+    "Region",
+    "Units Sold",
+    "Revenue (USD)",
+    "Orders Processed",
+    "On-Time Deliveries",
+    "On-Time %",
+    "Revenue Target (USD)",
+    "Revenue vs Target (USD)"
+  ],
+  "by_region_row_count": 5,
+  "totals": {
+    "total_units_sold": 550,
+    "total_revenue_usd": 220000,
+    "total_orders_processed": 1520,
+    "total_on_time_deliveries": 1468,
+    "total_incidents": 11,
+    "total_revenue_target_usd": 216000,
+    "revenue_vs_target_usd": 4000,
+    "on_time_rate_pct": 96.58
+  },
+  "reconciliation": {
+    "revenue_meets_target": true,
+    "on_time_rate_meets_min_pct": 95.0
+  }
+}

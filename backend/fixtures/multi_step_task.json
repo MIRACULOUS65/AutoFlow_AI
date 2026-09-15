@@ -1,0 +1,14 @@
+{
+  "request": {
+    "workspace_id": "ws_finance",
+    "goal": "Reconcile last month's invoices against the ledger and produce a report",
+    "constraints": [],
+    "attachments": [],
+    "client_metadata": { "source": "contract-fixture" }
+  },
+  "_expectation": {
+    "plan_min_steps": 5,
+    "dependencies_linear": true,
+    "notes": "A linear multi-step plan; each step depends on its predecessor."
+  }
+}

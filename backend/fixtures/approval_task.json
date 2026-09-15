@@ -1,0 +1,17 @@
+{
+  "request": {
+    "workspace_id": "ws_operations",
+    "goal": "Create my weekly operations report, then email it to finance after I approve",
+    "constraints": [],
+    "attachments": [],
+    "execution_mode": "autonomous_with_approval",
+    "client_metadata": { "source": "contract-fixture" }
+  },
+  "_expectation": {
+    "plan_min_steps": 9,
+    "requires_approval": true,
+    "approval_risk_class": "HIGH",
+    "terminal_status_before_approval": "AWAITING_APPROVAL",
+    "notes": "External email send is HIGH risk and must reach AWAITING_APPROVAL with a bound action hash."
+  }
+}

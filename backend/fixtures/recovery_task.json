@@ -1,0 +1,15 @@
+{
+  "request": {
+    "workspace_id": "ws_engineering",
+    "goal": "Run repository QA and verify the release gate",
+    "constraints": [{ "kind": "inject_failure", "value": { "step_index": 3 } }],
+    "attachments": [],
+    "client_metadata": { "source": "contract-fixture" }
+  },
+  "_expectation": {
+    "failing_step_index": 3,
+    "recovery_sequence": ["RECOVERY", "REOBSERVE", "ALTERNATE_PATH"],
+    "eventual_status": "COMPLETE",
+    "notes": "A step fails verification; bounded recovery re-observes, takes an alternate path, and completes."
+  }
+}

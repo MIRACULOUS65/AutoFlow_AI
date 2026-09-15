@@ -1,0 +1,3 @@
+# Flagship runtime output directory.
+# Generated artifacts (e.g. weekly_operations_report.xlsx) are written here
+# during flagship runs. Contents are transient and git-ignored except this file.

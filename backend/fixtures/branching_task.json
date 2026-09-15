@@ -1,0 +1,14 @@
+{
+  "request": {
+    "workspace_id": "ws_operations",
+    "goal": "Prepare the weekly operations report and validate the data in parallel",
+    "constraints": [],
+    "attachments": [],
+    "client_metadata": { "source": "contract-fixture" }
+  },
+  "_expectation": {
+    "plan_min_steps": 7,
+    "has_fan_out": true,
+    "notes": "Flagship report plan; analysis fans out to report generation and validation, which fan back in."
+  }
+}

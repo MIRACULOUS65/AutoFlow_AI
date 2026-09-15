@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * AutoFlow AI — strict monochrome design system.
+ * Light canvas / near-black ink. A single neutral scale drives every surface.
+ * Status is never expressed through hue; only ink, border, opacity and icon.
+ */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
+
+    --surface: 0 0% 98.5%;
+    --surface-foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 12%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 0% 20%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89%;
+    --input: 0 0% 87%;
+    --ring: 0 0% 30%;
+
+    --radius: 0.5rem;
+
+    --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  .dark {
+    --background: 0 0% 6%;
+    --foreground: 0 0% 92%;
+
+    --surface: 0 0% 8.5%;
+    --surface-foreground: 0 0% 92%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 92%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 92%;
+
+    --primary: 0 0% 94%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 92%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 58%;
+
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 94%;
+
+    --destructive: 0 0% 80%;
+    --destructive-foreground: 0 0% 8%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 22%;
+    --ring: 0 0% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Thin, technical scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border: 3px solid hsl(var(--background));
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  ::selection {
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+  }
+}
+
+@layer components {
+  /* Faint technical grid used behind hero / command surfaces */
+  .af-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .af-hairline {
+    @apply border-border;
+  }
+
+  /* Region app drag for the Electron custom title bar */
+  .af-drag {
+    -webkit-app-region: drag;
+  }
+  .af-no-drag {
+    -webkit-app-region: no-drag;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}

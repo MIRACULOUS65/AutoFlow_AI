@@ -1,0 +1,24 @@
+{
+  "orchestrator_output": {
+    "plan_id": "plan_invalid",
+    "task_id": "task_x",
+    "version": 1,
+    "graph": {
+      "steps": [
+        {
+          "step_id": "s1",
+          "index": 1,
+          "objective": "Do a thing",
+          "agent_profile": "agent_planner",
+          "dependencies": ["s_missing"],
+          "expected_state": "done"
+        }
+      ]
+    }
+  },
+  "_expectation": {
+    "validation_status": "INVALID",
+    "reason": "Step s1 depends on unknown step s_missing.",
+    "notes": "The deterministic plan validator must reject plans with unresolved dependencies."
+  }
+}

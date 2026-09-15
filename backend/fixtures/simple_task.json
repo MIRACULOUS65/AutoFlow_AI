@@ -1,0 +1,15 @@
+{
+  "request": {
+    "workspace_id": "ws_operations",
+    "goal": "Summarize the attached notes into a short brief",
+    "constraints": [],
+    "attachments": [],
+    "client_metadata": { "source": "contract-fixture" }
+  },
+  "_expectation": {
+    "plan_min_steps": 3,
+    "requires_approval": true,
+    "terminal_status": "AWAITING_APPROVAL",
+    "notes": "Generic plan ends with an approval checkpoint before any external action."
+  }
+}

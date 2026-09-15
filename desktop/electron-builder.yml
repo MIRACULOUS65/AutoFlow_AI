@@ -1,0 +1,48 @@
+appId: ai.autoflow.desktop
+productName: AutoFlow AI
+copyright: Copyright © 2026 AutoFlow AI
+
+directories:
+  output: dist-win
+  buildResources: build
+
+# The renderer is a fully static export; the packaged app only needs the
+# compiled Electron main/preload and the exported frontend. Bundling
+# node_modules (next-swc, libvips, etc.) is unnecessary and bloats the build.
+files:
+  - dist-electron/**/*
+  - out/**/*
+  - package.json
+  - "!node_modules/**/*"
+
+# Keep the app.asar but unpack the exported frontend so the custom `app://`
+# protocol can read it from disk via file URLs (asar-internal file:// reads are
+# unreliable for streaming). dist-electron stays inside the asar.
+asar: true
+asarUnpack:
+  - out/**/*
+
+# We do not code-sign in this phase. Disabling signing avoids the winCodeSign
+# tooling requirement during packaging.
+forceCodeSigning: false
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  artifactName: ${productName} Setup ${version}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: AutoFlow AI
+
+portable:
+  artifactName: ${productName} ${version} Portable.${ext}
